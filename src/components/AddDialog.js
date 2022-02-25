@@ -8,21 +8,15 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import axios from "axios";
 
-const EditDialog = ({
-  editDialogFlag,
-  setEditDialogFlag,
-  product,
-  handleEditItem,
-}) => {
-  const [name, setName] = useState(product.productName);
-  const [editPrice, setEditPrice] = useState(product.price);
-  const [editQuant, setEditQuant] = useState(product.quantity);
-  const [editDesc, setEditDesc] = useState(product.description);
-  const [id, setId] = useState(product.id)
+const AddDialog = ({ addDialogFlag, setAddDialogFlag, handleAddItem }) => {
+  const [productName, setProductName] = useState("");
+  const [quantity, setQuantity] = useState(0);
+  const [price, setPrice] = useState(0);
+  const [desc, setDesc] = useState("");
 
   return (
-    <Dialog open={editDialogFlag} aria-labelledby="form-dialog-title">
-      <DialogTitle>Edit Inventory Item</DialogTitle>
+    <Dialog open={addDialogFlag} aria-labelledby="form-dialog-title">
+      <DialogTitle>Add an Inventory Item</DialogTitle>
       <DialogContent>
         <Box
           sx={{
@@ -33,8 +27,9 @@ const EditDialog = ({
           }}
         >
           <TextField
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={productName}
+            onChange={(e) => setProductName(e.target.value)}
+            autoFocus
             label="Product Name"
             margin="dense"
             type="string"
@@ -42,8 +37,8 @@ const EditDialog = ({
           />
 
           <TextField
-            value={editPrice}
-            onChange={(e) => setEditPrice(e.target.value)}
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
             label="Price"
             margin="dense"
             type="number"
@@ -51,8 +46,8 @@ const EditDialog = ({
           />
 
           <TextField
-            value={editQuant}
-            onChange={(e) => setEditQuant(e.target.value)}
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
             label="Quantity"
             margin="dense"
             type="number"
@@ -60,8 +55,8 @@ const EditDialog = ({
           />
 
           <TextField
-            value={editDesc}
-            onChange={(e) => setEditDesc(e.target.value)}
+            value={desc}
+            onChange={(e) => setDesc(e.target.value)}
             label="Description"
             margin="dense"
             type="string"
@@ -70,18 +65,22 @@ const EditDialog = ({
         </Box>
       </DialogContent>
       <DialogActions>
-        <Button onClick={() => setEditDialogFlag(false)}>Cancel</Button>
+        <Button onClick={() => setAddDialogFlag(false)}>Cancel</Button>
         <Button
           onClick={() => {
-            handleEditItem(name, editPrice, editQuant, editDesc, id);
-            setEditDialogFlag(false);
+            handleAddItem(productName, quantity, price, desc);
+            setAddDialogFlag(false);
+            setProductName("");
+            setQuantity(0);
+            setPrice(0);
+            setDesc("");
           }}
         >
-          Submit
+          Add
         </Button>
       </DialogActions>
     </Dialog>
   );
 };
 
-export default EditDialog;
+export default AddDialog;

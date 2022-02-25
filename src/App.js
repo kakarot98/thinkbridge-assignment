@@ -9,7 +9,6 @@ function App() {
         <h1>Inventory Management</h1>
       </div>
       <div className='inventory-container'>
-        <h3>Inventory List</h3>
         <div className="list-container">
           <List />
         </div>

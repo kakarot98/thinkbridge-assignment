@@ -2,9 +2,12 @@
   margin: 0;
 }
 
-.App {
+.nav {
   background-color: aliceblue;
+  padding: 10px;
+  margin-bottom: 10px;
 }
+
 
 
 

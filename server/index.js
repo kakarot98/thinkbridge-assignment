@@ -1,17 +1,19 @@
 const express = require('express')
 const sequelize = require('./database')
 const Products = require('./Products')
+const cors = require('cors')
 
 sequelize.sync().then(()=>console.log("db is ready"))
 
 const app = express()
+app.use(cors())
 app.use(express.json())
 
 
 app.post('/products', async (req, res) => {
     //res.send("done")
     await Products.create(req.body)
-    res.send("product is inserted")
+    res.send("ok")
 })
 
 app.get('/products', async (req,res) => {
@@ -33,13 +35,13 @@ app.put('/products/:id', async (req, res)=> {
     product.quantity = req.body.quantity
     product.price = req.body.price
     await product.save()
-    res.send(product);
+    res.send('ok');
 })
 
 app.delete('/products/:id', async (req, res)=>{
     const requestedId = req.params.id
     await Products.destroy({where:{id:requestedId}})
-    res.send('deleted')
+    res.send('ok')
 })
 
 app.listen(3001, ()=>{
