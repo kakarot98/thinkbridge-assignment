@@ -20,11 +20,13 @@ const ListRows = ({product, handleEditItem, handleDeleteItem}) => {
 
   return (
     <TableRow key={product.id}>
-      <TableCell>{product.productName}</TableCell>
-      <TableCell align="right">${product.price}</TableCell>
-      <TableCell align="right">{product.quantity}</TableCell>
-      <TableCell align="right">{product.description}</TableCell>
-      <TableCell align="right">
+      <TableCell align="left">{product.productName}</TableCell>
+      <TableCell align="center">{product.category}</TableCell>
+      <TableCell align="center">{product.description}</TableCell>
+      <TableCell align="center">${product.price}</TableCell>
+      <TableCell align="center">{product.quantity}</TableCell>
+      
+      <TableCell align="center">
         <Stack spacing={1} direction="row-reverse">
           <Button variant="contained" color="secondary" onClick={()=>handleDeleteItem(product.id)}>
             Delete

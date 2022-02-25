@@ -3,7 +3,7 @@ const sequelize = require('./database')
 const Products = require('./Products')
 const cors = require('cors')
 
-sequelize.sync().then(()=>console.log("db is ready"))
+sequelize.sync({force:true}).then(()=>console.log("db is ready"))
 
 const app = express()
 app.use(cors())
@@ -34,6 +34,7 @@ app.put('/products/:id', async (req, res)=> {
     product.description = req.body.description
     product.quantity = req.body.quantity
     product.price = req.body.price
+    product.category = req.body.category
     await product.save()
     res.send('ok');
 })

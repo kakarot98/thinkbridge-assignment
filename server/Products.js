@@ -8,6 +8,9 @@ Products.init(
     productName: {
       type: DataTypes.STRING,
     },
+    category: {
+      type: DataTypes.STRING,
+    },
     price: {
       type: DataTypes.INTEGER,
     },
@@ -17,6 +20,7 @@ Products.init(
     description: {
       type: DataTypes.STRING,
     },
+    
   },
   {
     sequelize,
